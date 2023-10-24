@@ -1,3 +1,4 @@
+import 'package:deliveristo_dogs/di/dependency_injector.dart';
 import 'package:deliveristo_dogs/pages/dashboard_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +11,12 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'DeliveristoDogs',
-      home: DashboardPage(),
+    return const DependencyInjector(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'DeliveristoDogs',
+        home: DashboardPage(),
+      ),
     );
   }
 }

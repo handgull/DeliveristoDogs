@@ -1,6 +1,14 @@
+import 'package:deliveristo_dogs/blocs/dogs/dogs_bloc.dart';
+import 'package:deliveristo_dogs/misc/constants.dart';
+import 'package:deliveristo_dogs/models/random/random.dart';
+import 'package:deliveristo_dogs/repositories/dogs_repository.dart';
+import 'package:deliveristo_dogs/repositories/mappers/random_mapper.dart';
+import 'package:deliveristo_dogs/services/network/dogs/dogs_service.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pine/pine.dart';
+import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 part 'blocs.dart';
