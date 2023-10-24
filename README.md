@@ -29,3 +29,6 @@ If you want, you can use the watcher to generate code during development:
 ```bash
 fvm flutter pub run build_runner watch --delete-conflicting-outputs
 ```
+
+## Bonus: mason
+If you are interested in mason check the official [docs](https://brickhub.dev/): it's a lot faster to code with the pine bricks.
