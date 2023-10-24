@@ -1,3 +1,4 @@
+import 'package:deliveristo_dogs/pages/dashboard_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +13,7 @@ class App extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'DeliveristoDogs',
+      home: DashboardPage(),
     );
   }
 }
