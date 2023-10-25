@@ -1,5 +1,10 @@
 {
+  "appName": "DeliveristoDogs",
   "errorGeneric": "Generic error",
-  "getRandom": "Get random",
-  "getByBreed": "Get by breed"
+  "getRandomByBreed": "Get random by breed",
+  "getByBreed": "Get by breed",
+  "chooseBreed": "Choose the breed: ",
+  "chooseSubBreed": "Choose the sub-breed: ",
+  "getRandomBySubBreed": "Get random by sub-breed",
+  "getBySubBreed": "Get by sub-breed"
 }

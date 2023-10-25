@@ -1,3 +1,4 @@
+import 'package:deliveristo_dogs/blocs/breeds/breeds_bloc.dart';
 import 'package:deliveristo_dogs/blocs/dogs/dogs_bloc.dart';
 import 'package:deliveristo_dogs/misc/constants.dart';
 import 'package:deliveristo_dogs/models/breed/breed.dart';
