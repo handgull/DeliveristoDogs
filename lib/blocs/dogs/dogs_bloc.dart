@@ -1,4 +1,4 @@
-import 'package:deliveristo_dogs/models/random/random.dart';
+import 'package:deliveristo_dogs/models/random/dog_pic.dart';
 import 'package:deliveristo_dogs/repositories/dogs_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_essentials_kit/errors/localized_error.dart';

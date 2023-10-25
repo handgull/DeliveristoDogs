@@ -6,7 +6,7 @@ class DogsState with _$DogsState {
 
   const factory DogsState.gettingRandom() = _GettingRandomDogsState;
 
-  const factory DogsState.gettedRandom(Random random) = _GettedRandomDogsState;
+  const factory DogsState.gettedRandom(DogPic random) = _GettedRandomDogsState;
 
   const factory DogsState.errorGettingRandom(LocalizedError error) =
       _ErrorGettingRandomDogsState;

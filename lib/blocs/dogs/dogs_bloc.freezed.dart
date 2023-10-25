@@ -169,7 +169,7 @@ mixin _$DogsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRandom,
-    required TResult Function(Random random) gettedRandom,
+    required TResult Function(DogPic random) gettedRandom,
     required TResult Function(LocalizedError error) errorGettingRandom,
   }) =>
       throw _privateConstructorUsedError;
@@ -177,7 +177,7 @@ mixin _$DogsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRandom,
-    TResult? Function(Random random)? gettedRandom,
+    TResult? Function(DogPic random)? gettedRandom,
     TResult? Function(LocalizedError error)? errorGettingRandom,
   }) =>
       throw _privateConstructorUsedError;
@@ -185,7 +185,7 @@ mixin _$DogsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRandom,
-    TResult Function(Random random)? gettedRandom,
+    TResult Function(DogPic random)? gettedRandom,
     TResult Function(LocalizedError error)? errorGettingRandom,
     required TResult orElse(),
   }) =>
@@ -275,7 +275,7 @@ class _$InitialDogsStateImpl implements _InitialDogsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRandom,
-    required TResult Function(Random random) gettedRandom,
+    required TResult Function(DogPic random) gettedRandom,
     required TResult Function(LocalizedError error) errorGettingRandom,
   }) {
     return initial();
@@ -286,7 +286,7 @@ class _$InitialDogsStateImpl implements _InitialDogsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRandom,
-    TResult? Function(Random random)? gettedRandom,
+    TResult? Function(DogPic random)? gettedRandom,
     TResult? Function(LocalizedError error)? errorGettingRandom,
   }) {
     return initial?.call();
@@ -297,7 +297,7 @@ class _$InitialDogsStateImpl implements _InitialDogsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRandom,
-    TResult Function(Random random)? gettedRandom,
+    TResult Function(DogPic random)? gettedRandom,
     TResult Function(LocalizedError error)? errorGettingRandom,
     required TResult orElse(),
   }) {
@@ -393,7 +393,7 @@ class _$GettingRandomDogsStateImpl implements _GettingRandomDogsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRandom,
-    required TResult Function(Random random) gettedRandom,
+    required TResult Function(DogPic random) gettedRandom,
     required TResult Function(LocalizedError error) errorGettingRandom,
   }) {
     return gettingRandom();
@@ -404,7 +404,7 @@ class _$GettingRandomDogsStateImpl implements _GettingRandomDogsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRandom,
-    TResult? Function(Random random)? gettedRandom,
+    TResult? Function(DogPic random)? gettedRandom,
     TResult? Function(LocalizedError error)? errorGettingRandom,
   }) {
     return gettingRandom?.call();
@@ -415,7 +415,7 @@ class _$GettingRandomDogsStateImpl implements _GettingRandomDogsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRandom,
-    TResult Function(Random random)? gettedRandom,
+    TResult Function(DogPic random)? gettedRandom,
     TResult Function(LocalizedError error)? errorGettingRandom,
     required TResult orElse(),
   }) {
@@ -475,9 +475,9 @@ abstract class _$$GettedRandomDogsStateImplCopyWith<$Res> {
           $Res Function(_$GettedRandomDogsStateImpl) then) =
       __$$GettedRandomDogsStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Random random});
+  $Res call({DogPic random});
 
-  $RandomCopyWith<$Res> get random;
+  $DogPicCopyWith<$Res> get random;
 }
 
 /// @nodoc
@@ -497,14 +497,14 @@ class __$$GettedRandomDogsStateImplCopyWithImpl<$Res>
       null == random
           ? _value.random
           : random // ignore: cast_nullable_to_non_nullable
-              as Random,
+              as DogPic,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RandomCopyWith<$Res> get random {
-    return $RandomCopyWith<$Res>(_value.random, (value) {
+  $DogPicCopyWith<$Res> get random {
+    return $DogPicCopyWith<$Res>(_value.random, (value) {
       return _then(_value.copyWith(random: value));
     });
   }
@@ -516,7 +516,7 @@ class _$GettedRandomDogsStateImpl implements _GettedRandomDogsState {
   const _$GettedRandomDogsStateImpl(this.random);
 
   @override
-  final Random random;
+  final DogPic random;
 
   @override
   String toString() {
@@ -546,7 +546,7 @@ class _$GettedRandomDogsStateImpl implements _GettedRandomDogsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRandom,
-    required TResult Function(Random random) gettedRandom,
+    required TResult Function(DogPic random) gettedRandom,
     required TResult Function(LocalizedError error) errorGettingRandom,
   }) {
     return gettedRandom(random);
@@ -557,7 +557,7 @@ class _$GettedRandomDogsStateImpl implements _GettedRandomDogsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRandom,
-    TResult? Function(Random random)? gettedRandom,
+    TResult? Function(DogPic random)? gettedRandom,
     TResult? Function(LocalizedError error)? errorGettingRandom,
   }) {
     return gettedRandom?.call(random);
@@ -568,7 +568,7 @@ class _$GettedRandomDogsStateImpl implements _GettedRandomDogsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRandom,
-    TResult Function(Random random)? gettedRandom,
+    TResult Function(DogPic random)? gettedRandom,
     TResult Function(LocalizedError error)? errorGettingRandom,
     required TResult orElse(),
   }) {
@@ -618,10 +618,10 @@ class _$GettedRandomDogsStateImpl implements _GettedRandomDogsState {
 }
 
 abstract class _GettedRandomDogsState implements DogsState {
-  const factory _GettedRandomDogsState(final Random random) =
+  const factory _GettedRandomDogsState(final DogPic random) =
       _$GettedRandomDogsStateImpl;
 
-  Random get random;
+  DogPic get random;
   @JsonKey(ignore: true)
   _$$GettedRandomDogsStateImplCopyWith<_$GettedRandomDogsStateImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -697,7 +697,7 @@ class _$ErrorGettingRandomDogsStateImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRandom,
-    required TResult Function(Random random) gettedRandom,
+    required TResult Function(DogPic random) gettedRandom,
     required TResult Function(LocalizedError error) errorGettingRandom,
   }) {
     return errorGettingRandom(error);
@@ -708,7 +708,7 @@ class _$ErrorGettingRandomDogsStateImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRandom,
-    TResult? Function(Random random)? gettedRandom,
+    TResult? Function(DogPic random)? gettedRandom,
     TResult? Function(LocalizedError error)? errorGettingRandom,
   }) {
     return errorGettingRandom?.call(error);
@@ -719,7 +719,7 @@ class _$ErrorGettingRandomDogsStateImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRandom,
-    TResult Function(Random random)? gettedRandom,
+    TResult Function(DogPic random)? gettedRandom,
     TResult Function(LocalizedError error)? errorGettingRandom,
     required TResult orElse(),
   }) {
