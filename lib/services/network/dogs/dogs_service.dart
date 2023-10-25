@@ -11,4 +11,7 @@ abstract class DogsService {
 
   @GET('/breeds/image/random')
   Future<Response<String>> random();
+
+  @GET('/breed/{breed}/images')
+  Future<Response<List<String>>> byBreed(@Path('breed') String breed);
 }

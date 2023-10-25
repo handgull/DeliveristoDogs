@@ -21,10 +21,14 @@ class DogsBloc extends Bloc<DogsEvent, DogsState> {
     required this.dogsRepository,
   }) : super(const DogsState.initial()) {
     on<GetRandomDogsEvent>(_onGetRandom);
+    on<GetByBreedDogsEvent>(_onGetByBreed);
   }
 
   /// Method used to add the [GetRandomDogsEvent] event
   void getRandom() => add(const DogsEvent.getRandom());
+
+  /// Method used to add the [GetByBreedDogsEvent] event
+  void getByBreed(String breed) => add(DogsEvent.getByBreed(breed));
 
   FutureOr<void> _onGetRandom(
     GetRandomDogsEvent event,
@@ -36,6 +40,21 @@ class DogsBloc extends Bloc<DogsEvent, DogsState> {
       final result = await dogsRepository.random();
 
       emit(DogsState.gettedRandom(result));
+    } on LocalizedError catch (error) {
+      emit(DogsState.errorGettingRandom(error));
+    } catch (_) {
+      emit(DogsState.errorGettingRandom(GenericError()));
+    }
+  }
+
+  FutureOr<void> _onGetByBreed(
+      GetByBreedDogsEvent event, Emitter<DogsState> emit) async {
+    emit(const DogsState.gettingByBreed());
+
+    try {
+      final result = await dogsRepository.byBreed(event.breed);
+
+      emit(DogsState.gettedByBreed(result));
     } on LocalizedError catch (error) {
       emit(DogsState.errorGettingRandom(error));
     } catch (_) {

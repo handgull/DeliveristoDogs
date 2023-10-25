@@ -10,4 +10,12 @@ class DogsState with _$DogsState {
 
   const factory DogsState.errorGettingRandom(LocalizedError error) =
       _ErrorGettingRandomDogsState;
+
+  const factory DogsState.gettingByBreed() = _GettingByBreedDogsState;
+
+  const factory DogsState.gettedByBreed(List<DogPic> pics) =
+      _GettedByBreedDogsState;
+
+  const factory DogsState.errorGettingByBreed(LocalizedError error) =
+      _ErrorGettingByBreedDogsState;
 }
