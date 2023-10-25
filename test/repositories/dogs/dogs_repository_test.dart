@@ -1,6 +1,6 @@
 import 'package:data_fixture_dart/data_fixture_dart.dart';
 import 'package:deliveristo_dogs/errors/repository_error.dart';
-import 'package:deliveristo_dogs/models/random/dog_pic.dart';
+import 'package:deliveristo_dogs/models/dog_pic/dog_pic.dart';
 import 'package:deliveristo_dogs/repositories/mappers/dog_pic_mapper.dart';
 import 'package:deliveristo_dogs/services/network/dogs/dogs_service.dart';
 import 'package:deliveristo_dogs/services/network/responses/response/response.dart';

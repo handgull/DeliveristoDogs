@@ -1,11 +1,11 @@
 import 'package:data_fixture_dart/data_fixture_dart.dart';
-import 'package:deliveristo_dogs/models/random/dog_pic.dart';
+import 'package:deliveristo_dogs/models/dog_pic/dog_pic.dart';
 
-extension RandomFixture on DogPic {
-  static RandomFixtureFactory factory() => RandomFixtureFactory();
+extension DogPicFixture on DogPic {
+  static DogPicFixtureFactory factory() => DogPicFixtureFactory();
 }
 
-class RandomFixtureFactory extends FixtureFactory<DogPic> {
+class DogPicFixtureFactory extends FixtureFactory<DogPic> {
   @override
   FixtureDefinition<DogPic> definition() => define(
         (faker) => DogPic(

@@ -1,4 +1,5 @@
-import 'package:deliveristo_dogs/models/random/dog_pic.dart';
+import 'package:deliveristo_dogs/errors/generic_error.dart';
+import 'package:deliveristo_dogs/models/dog_pic/dog_pic.dart';
 import 'package:deliveristo_dogs/repositories/dogs_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_essentials_kit/errors/localized_error.dart';
@@ -38,7 +39,7 @@ class DogsBloc extends Bloc<DogsEvent, DogsState> {
     } on LocalizedError catch (error) {
       emit(DogsState.errorGettingRandom(error));
     } catch (_) {
-      // TODO emit(DogsState.errorGettingRandom(GenericError()));
+      emit(DogsState.errorGettingRandom(GenericError()));
     }
   }
 }

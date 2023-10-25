@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:deliveristo_dogs/models/random/dog_pic.dart';
+import 'package:deliveristo_dogs/models/dog_pic/dog_pic.dart';
 import 'package:deliveristo_dogs/repositories/mappers/dog_pic_mapper.dart';
 
 import '../../fixtures/models/dog_pic_fixture_factory.dart';
@@ -10,7 +10,7 @@ void main() {
   late DogPic model;
 
   setUp(() {
-    model = RandomFixture.factory().makeSingle();
+    model = DogPicFixture.factory().makeSingle();
 
     dto = model.uri;
     mapper = const DogPicMapper();
