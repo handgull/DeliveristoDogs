@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:data_fixture_dart/data_fixture_dart.dart';
 import 'package:deliveristo_dogs/errors/generic_error.dart';
 import 'package:deliveristo_dogs/errors/repository_error.dart';
 import 'package:deliveristo_dogs/models/dog_pic/dog_pic.dart';
@@ -21,64 +22,68 @@ void main() {
     bloc = DogsBloc(dogsRepository: dogsRepository);
   });
 
-  /// Testing the event [GetRandomDogsEvent]
-  group('when the event GetRandomDogsEvent is added to the BLoC', () {
+  /// Testing the event [GetRandomByBreedDogsEvent]
+  group('when the event GetRandomDogsByBreedEvent is added to the BLoC', () {
     late DogPic random;
+    late String breed;
 
     setUp(() {
       random = DogPicFixture.factory().makeSingle();
+      breed = faker.randomGenerator.string(10);
     });
     blocTest<DogsBloc, DogsState>(
-      'test that DogsBloc emits DogsState.gettedRandom when getRandom is called',
+      'test that DogsBloc emits DogsState.gettedRandomByBreed when getRandom is called',
       setUp: () {
-        when(dogsRepository.random()).thenAnswer((_) async => random);
+        when(dogsRepository.randomByBreed(breed))
+            .thenAnswer((_) async => random);
       },
       build: () => bloc,
       act: (bloc) {
-        bloc.getRandom();
+        bloc.getRandomByBreed(breed);
       },
       expect: () => <DogsState>[
-        const DogsState.gettingRandom(),
-        DogsState.gettedRandom(random),
+        const DogsState.gettingRandomByBreed(),
+        DogsState.gettedRandomByBreed(random),
       ],
       verify: (_) {
-        verify(dogsRepository.random()).called(1);
+        verify(dogsRepository.randomByBreed(breed)).called(1);
       },
     );
 
     blocTest<DogsBloc, DogsState>(
-      'test that DogsBloc emits DogsState.errorGettingRandom when getRandom is called',
+      'test that DogsBloc emits DogsState.errorGettingRandomByBreed when getRandom is called',
       setUp: () {
-        when(dogsRepository.random()).thenThrow(RepositoryError(Error()));
+        when(dogsRepository.randomByBreed(breed))
+            .thenThrow(RepositoryError(Error()));
       },
       build: () => bloc,
       act: (bloc) {
-        bloc.getRandom();
+        bloc.getRandomByBreed(breed);
       },
       expect: () => <DogsState>[
-        const DogsState.gettingRandom(),
-        DogsState.errorGettingRandom(RepositoryError(Error())),
+        const DogsState.gettingRandomByBreed(),
+        DogsState.errorGettingRandomByBreed(RepositoryError(Error())),
       ],
       verify: (_) {
-        verify(dogsRepository.random()).called(1);
+        verify(dogsRepository.randomByBreed(breed)).called(1);
       },
     );
 
     blocTest<DogsBloc, DogsState>(
-      'test that DogsBloc emits DogsState.errorGettingRandom(GenericError()) when getRandom is called',
+      'test that DogsBloc emits DogsState.errorGettingRandomByBreed(GenericError()) when getRandom is called',
       setUp: () {
-        when(dogsRepository.random()).thenThrow(Error());
+        when(dogsRepository.randomByBreed(breed)).thenThrow(Error());
       },
       build: () => bloc,
       act: (bloc) {
-        bloc.getRandom();
+        bloc.getRandomByBreed(breed);
       },
       expect: () => <DogsState>[
-        const DogsState.gettingRandom(),
-        DogsState.errorGettingRandom(GenericError()),
+        const DogsState.gettingRandomByBreed(),
+        DogsState.errorGettingRandomByBreed(GenericError()),
       ],
       verify: (_) {
-        verify(dogsRepository.random()).called(1);
+        verify(dogsRepository.randomByBreed(breed)).called(1);
       },
     );
   });

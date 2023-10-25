@@ -34,34 +34,36 @@ void main() {
     late String message;
     late String status;
     late DogPic random;
+    late String breed;
 
     setUp(() {
       message = faker.internet.httpsUrl();
       status = faker.randomGenerator.string(10);
       random = DogPic(message);
+      breed = faker.randomGenerator.string(10);
     });
     test('getting random successfully', () async {
-      when(dogsService.random()).thenAnswer((_) async => Response(
+      when(dogsService.randomByBreed(breed)).thenAnswer((_) async => Response(
             message: message,
             status: status,
           ));
       when(randomMapper.from(message)).thenAnswer((_) => random);
 
-      final result = await repository.random();
+      final result = await repository.randomByBreed(breed);
 
       expect(result, random);
 
-      verify(dogsService.random()).called(1);
+      verify(dogsService.randomByBreed(breed)).called(1);
       verify(randomMapper.from(message)).called(1);
     });
 
     test('getting random with error', () async {
-      when(dogsService.random()).thenThrow(Error());
+      when(dogsService.randomByBreed(breed)).thenThrow(Error());
 
-      expect(() async => await repository.random(),
+      expect(() async => await repository.randomByBreed(breed),
           throwsA(isA<RepositoryError>()));
 
-      verify(dogsService.random()).called(1);
+      verify(dogsService.randomByBreed(breed)).called(1);
       verifyNever(randomMapper.from(message));
     });
   });

@@ -5,11 +5,17 @@ import 'package:pine/pine.dart';
 
 /// Abstract class of DogsRepository
 abstract class DogsRepository {
-  /// method that returns a random dog image
-  Future<DogPic> random();
+  /// method that returns a random dog image by breed
+  Future<DogPic> randomByBreed(String breed);
 
   /// method that returns a list of dog pics by breed
   Future<List<DogPic>> byBreed(String breed);
+
+  /// method that returns a random dog image by breed and sub-breed
+  Future<DogPic> randomBySubBreed(String breed, String subBreed);
+
+  /// method that returns a list of dog pics by breed
+  Future<List<DogPic>> bySubBreed(String breed, String subBreed);
 }
 
 /// Implementation of the base interface DogsRepository
@@ -23,8 +29,8 @@ class DogsRepositoryImpl extends Repository implements DogsRepository {
   });
 
   @override
-  Future<DogPic> random() => safeCode(() async {
-        final result = await dogsService.random();
+  Future<DogPic> randomByBreed(String breed) => safeCode(() async {
+        final result = await dogsService.randomByBreed(breed);
 
         return randomMapper.from(result.message);
       });
@@ -32,6 +38,24 @@ class DogsRepositoryImpl extends Repository implements DogsRepository {
   @override
   Future<List<DogPic>> byBreed(String breed) => safeCode(() async {
         final result = await dogsService.byBreed(breed);
+
+        return (result.message as List)
+            .map((e) => randomMapper.from(e))
+            .toList(growable: false);
+      });
+
+  @override
+  Future<DogPic> randomBySubBreed(String breed, String subBreed) =>
+      safeCode(() async {
+        final result = await dogsService.randomBySubBreed(breed, subBreed);
+
+        return randomMapper.from(result.message);
+      });
+
+  @override
+  Future<List<DogPic>> bySubBreed(String breed, String subBreed) =>
+      safeCode(() async {
+        final result = await dogsService.bySubBreed(breed, subBreed);
 
         return (result.message as List)
             .map((e) => randomMapper.from(e))

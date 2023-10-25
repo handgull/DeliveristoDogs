@@ -20,30 +20,52 @@ class DogsBloc extends Bloc<DogsEvent, DogsState> {
   DogsBloc({
     required this.dogsRepository,
   }) : super(const DogsState.initial()) {
-    on<GetRandomDogsEvent>(_onGetRandom);
+    on<GetRandomByBreedDogsEvent>(_onGetRandomByBreed);
     on<GetByBreedDogsEvent>(_onGetByBreed);
+    on<GetRandomBySubBreedDogsEvent>(_onGetRandomBySubBreed);
+    on<GetBySubBreedDogsEvent>(_onGetBySubBreed);
   }
 
-  /// Method used to add the [GetRandomDogsEvent] event
-  void getRandom() => add(const DogsEvent.getRandom());
+  /// Method used to add the [GetRandomByBreedDogsEvent] event
+  void getRandomByBreed(String breed) => add(DogsEvent.getRandomByBreed(breed));
 
   /// Method used to add the [GetByBreedDogsEvent] event
   void getByBreed(String breed) => add(DogsEvent.getByBreed(breed));
 
-  FutureOr<void> _onGetRandom(
-    GetRandomDogsEvent event,
+  /// Method used to add the [GetRandomBySubBreedDogsEvent] event
+  void getRandomBySubBreed({
+    required String breed,
+    required String subBreed,
+  }) =>
+      add(DogsEvent.getRandomBySubBreed(
+        breed: breed,
+        subBreed: subBreed,
+      ));
+
+  /// Method used to add the [GetBySubBreedDogsEvent] event
+  void getBySubBreed({
+    required String breed,
+    required String subBreed,
+  }) =>
+      add(DogsEvent.getBySubBreed(
+        breed: breed,
+        subBreed: subBreed,
+      ));
+
+  FutureOr<void> _onGetRandomByBreed(
+    GetRandomByBreedDogsEvent event,
     Emitter<DogsState> emit,
   ) async {
-    emit(const DogsState.gettingRandom());
+    emit(const DogsState.gettingRandomByBreed());
 
     try {
-      final result = await dogsRepository.random();
+      final result = await dogsRepository.randomByBreed(event.breed);
 
-      emit(DogsState.gettedRandom(result));
+      emit(DogsState.gettedRandomByBreed(result));
     } on LocalizedError catch (error) {
-      emit(DogsState.errorGettingRandom(error));
+      emit(DogsState.errorGettingRandomByBreed(error));
     } catch (_) {
-      emit(DogsState.errorGettingRandom(GenericError()));
+      emit(DogsState.errorGettingRandomByBreed(GenericError()));
     }
   }
 
@@ -56,9 +78,41 @@ class DogsBloc extends Bloc<DogsEvent, DogsState> {
 
       emit(DogsState.gettedByBreed(result));
     } on LocalizedError catch (error) {
-      emit(DogsState.errorGettingRandom(error));
+      emit(DogsState.errorGettingByBreed(error));
     } catch (_) {
-      emit(DogsState.errorGettingRandom(GenericError()));
+      emit(DogsState.errorGettingByBreed(GenericError()));
+    }
+  }
+
+  FutureOr<void> _onGetRandomBySubBreed(
+      GetRandomBySubBreedDogsEvent event, Emitter<DogsState> emit) async {
+    emit(const DogsState.gettingRandomBySubBreed());
+
+    try {
+      final result =
+          await dogsRepository.randomBySubBreed(event.breed, event.subBreed);
+
+      emit(DogsState.gettedRandomBySubBreed(result));
+    } on LocalizedError catch (error) {
+      emit(DogsState.errorGettingRandomBySubBreed(error));
+    } catch (_) {
+      emit(DogsState.errorGettingRandomBySubBreed(GenericError()));
+    }
+  }
+
+  FutureOr<void> _onGetBySubBreed(
+      GetBySubBreedDogsEvent event, Emitter<DogsState> emit) async {
+    emit(const DogsState.gettingBySubBreed());
+
+    try {
+      final result =
+          await dogsRepository.bySubBreed(event.breed, event.subBreed);
+
+      emit(DogsState.gettedBySubBreed(result));
+    } on LocalizedError catch (error) {
+      emit(DogsState.errorGettingBySubBreed(error));
+    } catch (_) {
+      emit(DogsState.errorGettingBySubBreed(GenericError()));
     }
   }
 }

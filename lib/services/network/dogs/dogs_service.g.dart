@@ -19,7 +19,7 @@ class _DogsService implements DogsService {
   String? baseUrl;
 
   @override
-  Future<Response<String>> random() async {
+  Future<Response<String>> randomByBreed(String breed) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -32,7 +32,7 @@ class _DogsService implements DogsService {
     )
             .compose(
               _dio.options,
-              '/breeds/image/random',
+              '/breed/${breed}/images/random',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -63,6 +63,74 @@ class _DogsService implements DogsService {
             .compose(
               _dio.options,
               '/breed/${breed}/images',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = Response<List<String>>.fromJson(
+      _result.data!,
+      (json) => json is List<dynamic>
+          ? json.map<String>((i) => i as String).toList()
+          : List.empty(),
+    );
+    return value;
+  }
+
+  @override
+  Future<Response<String>> randomBySubBreed(
+    String breed,
+    String subBreed,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<Response<String>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/breed/${breed}/${subBreed}/images/random',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = Response<String>.fromJson(
+      _result.data!,
+      (json) => json as String,
+    );
+    return value;
+  }
+
+  @override
+  Future<Response<List<String>>> bySubBreed(
+    String breed,
+    String subBreed,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<Response<List<String>>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/breed/${breed}/${subBreed}/images',
               queryParameters: queryParameters,
               data: _data,
             )

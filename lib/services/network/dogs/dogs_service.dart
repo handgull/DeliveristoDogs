@@ -9,9 +9,21 @@ part 'dogs_service.g.dart';
 abstract class DogsService {
   factory DogsService(Dio dio, {String baseUrl}) = _DogsService;
 
-  @GET('/breeds/image/random')
-  Future<Response<String>> random();
+  @GET('/breed/{breed}/images/random')
+  Future<Response<String>> randomByBreed(@Path('breed') String breed);
 
   @GET('/breed/{breed}/images')
   Future<Response<List<String>>> byBreed(@Path('breed') String breed);
+
+  @GET('/breed/{breed}/{subBreed}/images/random')
+  Future<Response<String>> randomBySubBreed(
+    @Path('breed') String breed,
+    @Path('subBreed') String subBreed,
+  );
+
+  @GET('/breed/{breed}/{subBreed}/images')
+  Future<Response<List<String>>> bySubBreed(
+    @Path('breed') String breed,
+    @Path('subBreed') String subBreed,
+  );
 }

@@ -13,7 +13,9 @@ class DashboardPage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () async {
-              context.read<DogsBloc>().getRandom();
+              context
+                  .read<DogsBloc>()
+                  .getRandomBySubBreed(breed: 'hound', subBreed: 'afghan');
             },
             icon: const Icon(
               Icons.shuffle,
@@ -22,7 +24,9 @@ class DashboardPage extends StatelessWidget {
           ),
           IconButton(
             onPressed: () async {
-              context.read<DogsBloc>().getByBreed('hound');
+              context
+                  .read<DogsBloc>()
+                  .getBySubBreed(breed: 'hound', subBreed: 'afghan');
             },
             icon: const Icon(
               Icons.search,
@@ -33,7 +37,7 @@ class DashboardPage extends StatelessWidget {
       ),
       body: BlocConsumer<DogsBloc, DogsState>(
         listener: (BuildContext context, DogsState state) => state.whenOrNull(
-          errorGettingRandom: (error) =>
+          errorGettingRandomByBreed: (error) =>
               ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(error.localizedString(context) ?? error.toString()),
@@ -45,33 +49,61 @@ class DashboardPage extends StatelessWidget {
               content: Text(error.localizedString(context) ?? error.toString()),
             ),
           ),
-          gettedRandom: (random) => ScaffoldMessenger.of(context).showSnackBar(
+          errorGettingRandomBySubBreed: (error) =>
+              ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(random.uri),
+              content: Text(error.localizedString(context) ?? error.toString()),
+            ),
+          ),
+          errorGettingBySubBreed: (error) =>
+              ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(error.localizedString(context) ?? error.toString()),
             ),
           ),
         ),
         builder: (context, state) =>
             state.whenOrNull(
-              gettingRandom: () => const Center(
+              gettingRandomByBreed: () => const Center(
                 child: CircularProgressIndicator(),
               ),
               gettingByBreed: () => const Center(
                 child: CircularProgressIndicator(),
               ),
-              gettedRandom: (random) => Image.network(random.uri),
+              gettingRandomBySubBreed: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              gettingBySubBreed: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              gettedRandomByBreed: (random) => Image.network(random.uri),
+              gettedRandomBySubBreed: (random) => Image.network(random.uri),
               gettedByBreed: (pics) => GridView.builder(
-                  padding: const EdgeInsets.all(12),
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 3 / 2,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                  ),
-                  itemCount: pics.length,
-                  itemBuilder: (BuildContext context, index) {
-                    return Image.network(pics[index].uri);
-                  }),
+                padding: const EdgeInsets.all(12),
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
+                ),
+                itemCount: pics.length,
+                itemBuilder: (BuildContext context, index) {
+                  return Image.network(pics[index].uri);
+                },
+              ),
+              gettedBySubBreed: (pics) => GridView.builder(
+                padding: const EdgeInsets.all(12),
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
+                ),
+                itemCount: pics.length,
+                itemBuilder: (BuildContext context, index) {
+                  return Image.network(pics[index].uri);
+                },
+              ),
             ) ??
             const SizedBox.shrink(),
       ),
