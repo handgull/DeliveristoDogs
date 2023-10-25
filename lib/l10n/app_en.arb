@@ -1,4 +1,5 @@
 {
   "errorGeneric": "Generic error",
-  "getRandom": "Get random"
+  "getRandom": "Get random",
+  "getByBreed": "Get by breed"
 }
