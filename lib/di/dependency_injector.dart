@@ -1,8 +1,12 @@
 import 'package:deliveristo_dogs/blocs/dogs/dogs_bloc.dart';
 import 'package:deliveristo_dogs/misc/constants.dart';
+import 'package:deliveristo_dogs/models/breed/breed.dart';
 import 'package:deliveristo_dogs/models/dog_pic/dog_pic.dart';
+import 'package:deliveristo_dogs/repositories/breeds_repository.dart';
 import 'package:deliveristo_dogs/repositories/dogs_repository.dart';
+import 'package:deliveristo_dogs/repositories/mappers/breeds_mapper.dart';
 import 'package:deliveristo_dogs/repositories/mappers/dog_pic_mapper.dart';
+import 'package:deliveristo_dogs/services/network/breeds/breeds_service.dart';
 import 'package:deliveristo_dogs/services/network/dogs/dogs_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';

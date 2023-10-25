@@ -7,4 +7,10 @@ final List<RepositoryProvider> _repositories = [
       randomMapper: context.read(),
     ),
   ),
+  RepositoryProvider<BreedsRepository>(
+    create: (context) => BreedsRepositoryImpl(
+      breedsService: context.read(),
+      breedsMapper: context.read(),
+    ),
+  ),
 ];

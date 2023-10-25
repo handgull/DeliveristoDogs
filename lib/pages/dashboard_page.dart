@@ -1,10 +1,23 @@
 import 'package:deliveristo_dogs/blocs/dogs/dogs_bloc.dart';
 import 'package:deliveristo_dogs/l10n/localized_context.dart';
+import 'package:deliveristo_dogs/repositories/breeds_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
+
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    _printBreeds();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,5 +121,9 @@ class DashboardPage extends StatelessWidget {
             const SizedBox.shrink(),
       ),
     );
+  }
+
+  void _printBreeds() async {
+    print(await context.read<BreedsRepository>().all());
   }
 }

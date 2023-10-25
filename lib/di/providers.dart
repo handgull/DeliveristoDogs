@@ -10,4 +10,10 @@ final List<SingleChildWidget> _providers = [
       baseUrl: K.baseUrl,
     ),
   ),
+  Provider<BreedsService>(
+    create: (context) => BreedsService(
+      context.read(),
+      baseUrl: K.baseUrl,
+    ),
+  ),
 ];
